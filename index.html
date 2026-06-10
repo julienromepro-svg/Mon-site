@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>JR Parcs & Jardins</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="css/style.css">
+
+</head>
+
+<body>
+
+<header>
+
+<div class="container">
+
+<div class="logo">
+
+<img src="images/logo.png" alt="JR Parcs & Jardins">
+
+</div>
+
+<nav>
+
+<ul>
+
+<li><a href="#">Accueil</a></li>
+<li><a href="#services">Services</a></li>
+<li><a href="#realisations">Réalisations</a></li>
+<li><a href="#contact">Contact</a></li>
+
+<li>
+
+<a href="#contact" class="btn-menu">
+Devis Gratuit
+</a>
+
+</li>
+
+</ul>
+
+</nav>
+
+</div>
+
+</header>
+
+<section class="hero">
+
+<div class="overlay"></div>
+
+<div class="hero-content">
+
+<h1>
+
+JR PARCS &<br>
+<span>JARDINS</span>
+
+</h1>
+
+<p class="subtitle">
+
+Conception • Aménagements extérieurs • Entretien
+
+</p>
+
+<p class="zone">
+
+📍 Jalhay • Spa • Theux • Verviers • Malmedy
+
+</p>
+
+<a href="#contact" class="btn">
+
+Demander un devis
+
+</a>
+
+</div>
+
+</section>
+
+<section id="services" class="services">
+
+<div class="container">
+
+<h2>Nos Services</h2>
+
+<div class="cards">
+
+<div class="card">
+
+<h3>🌿 Entretien</h3>
+
+<p>
+Tonte, taille de haies,
+débroussaillage,
+entretien régulier.
+</p>
+
+</div>
+
+<div class="card">
+
+<h3>🏡 Aménagements</h3>
+
+<p>
+Plantations,
+bordures,
+clôtures,
+allées.
+</p>
+
+</div>
+
+<div class="card">
+
+<h3>🌳 Conception</h3>
+
+<p>
+Création d'espaces verts
+sur mesure.
+</p>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<section class="why">
+
+<div class="container">
+
+<h2>Pourquoi nous choisir ?</h2>
+
+<div class="why-grid">
+
+<div>✔ Travail soigné</div>
+<div>✔ Matériel professionnel</div>
+<div>✔ Réactivité</div>
+<div>✔ Devis gratuit</div>
+<div>✔ Intervention locale</div>
+<div>✔ Respect des délais</div>
+
+</div>
+
+</div>
+
+</section>
+
+<section id="realisations" class="gallery">
+
+<div class="container">
+
+<h2>Réalisations</h2>
+
+<div class="gallery-grid">
+
+<img src="images/photo1.jpg">
+<img src="images/photo2.jpg">
+<img src="images/photo3.jpg">
+<img src="images/photo4.jpg">
+
+</div>
+
+</div>
+
+</section>
+
+<section id="contact" class="contact">
+
+<div class="container">
+
+<h2>Contact</h2>
+
+<p class="phone">
+
+📞 0492 84 53 52
+
+</p>
+
+<p>
+
+✉️ julienrome.pro@gmail.com
+
+</p>
+
+<form id="contact-form">
+
+<input type="text" name="name" placeholder="Nom" required>
+
+<input type="email" name="email" placeholder="Email" required>
+
+<input type="tel" name="phone" placeholder="Téléphone">
+
+<textarea name="message" placeholder="Décrivez votre projet" required></textarea>
+<input type="text" name="website" id="website">
+<button type="submit">
+
+Envoyer ma demande
+
+</button>
+
+</form>
+
+<p id="result-message"></p>
+
+</div>
+
+</section>
+
+<footer>
+
+<p>
+© 2025 JR Parcs & Jardins
+</p>
+
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+
+<script>
+
+emailjs.init({
+    publicKey: "dwUKMPzj59RQg6IdG"
+});
+
+let sending = false;
+
+document
+.getElementById("contact-form")
+.addEventListener("submit", function(event){
+
+    event.preventDefault();
+
+    if(sending){
+        return;
+    }
+
+    sending = true;
+
+    const button = this.querySelector("button");
+
+    button.disabled = true;
+    button.innerHTML = "Envoi en cours...";
+
+    emailjs.sendForm(
+        "service_6fe24zm",
+        "template_51hwgmp",
+        this
+    )
+
+    .then(() => {
+
+        document.getElementById("result-message").innerHTML =
+        "✅ Votre demande a bien été envoyée.";
+
+        this.reset();
+
+    })
+
+    .catch((error) => {
+
+        console.error(error);
+
+        document.getElementById("result-message").innerHTML =
+        "❌ Erreur lors de l'envoi.";
+
+    })
+
+    .finally(() => {
+
+        setTimeout(() => {
+
+            sending = false;
+
+            button.disabled = false;
+            button.innerHTML = "Envoyer ma demande";
+
+        }, 30000); // 30 secondes
+
+    });
+
+});
+
+</script>
+
+</body>
+</html>
